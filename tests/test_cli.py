@@ -2,10 +2,10 @@ from unittest.mock import Mock, patch
 
 from click.testing import CliRunner
 
-from lambda_bundler.cli import cli
+from layerpack.cli import cli
 
 
-@patch("lambda_bundler.cli.LambdaPackager")
+@patch("layerpack.cli.LambdaPackager")
 def test_create_layer_from_requirements(mock_packager, tmp_path):
     # Setup mock
     mock_instance = Mock()
@@ -35,7 +35,7 @@ def test_create_layer_from_requirements(mock_packager, tmp_path):
     assert "Created layer at:" in result.output
 
 
-@patch("lambda_bundler.cli.LambdaPackager")
+@patch("layerpack.cli.LambdaPackager")
 def test_create_layer_from_packages(mock_packager, tmp_path):
     # Setup mock
     mock_instance = Mock()
@@ -62,7 +62,7 @@ def test_create_layer_from_packages(mock_packager, tmp_path):
     assert "Created layer at:" in result.output
 
 
-@patch("lambda_bundler.cli.DependencyManager")
+@patch("layerpack.cli.DependencyManager")
 def test_analyze_requirements(mock_dm, tmp_path):
     # Setup mock
     mock_instance = Mock()

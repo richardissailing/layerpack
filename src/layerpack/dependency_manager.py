@@ -9,24 +9,52 @@ from .logger import logger
 
 
 class DependencyManager:
-    def __init__(self):
-        """Initialize temporary directory for package management."""
+    def __init__(self, uv_path=None):
+        """Initialize temporary directory for package management.
+
+        Args:
+            uv_path: Optional path to uv executable.
+            If not provided, will attempt to find it.
+        """
         self.temp_dir = tempfile.mkdtemp()
         logger.debug(f"Initialized temporary directory at {self.temp_dir}")
+        self.uv_path = uv_path
         self.use_uv = self._check_uv_available()
 
     def _check_uv_available(self) -> bool:
         """Check if uv is available in the environment."""
         try:
+            # If uv_path is provided, use that directly
+            if self.uv_path:
+                subprocess.run(
+                    [self.uv_path, "--version"],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                )
+                return True
+
+            # Otherwise try to find uv in PATH
+            result = subprocess.run(
+                ["which", "uv"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            self.uv_path = result.stdout.strip()
+
+            # Verify the found uv works
             subprocess.run(
-                ["uv", "--version"],
+                [self.uv_path, "--version"],
                 check=True,
                 capture_output=True,
                 text=True,
             )
             return True
+
         except (subprocess.CalledProcessError, FileNotFoundError):
             logger.debug("uv not available, falling back to pip")
+            self.uv_path = None
             return False
 
     def resolve_dependencies(self, packages: List[str]) -> Dict[str, str]:
@@ -62,7 +90,7 @@ class DependencyManager:
                     f.write(f"{package}\n")
 
             if self.use_uv:
-                cmd = ["uv", "pip", "compile", req_file]
+                cmd = [self.uv_path, "pip", "compile", req_file]
             else:
                 # Fallback to pip
                 cmd = ["pip", "freeze"]
@@ -128,7 +156,7 @@ class DependencyManager:
                 logger.info(f"Installing {name}=={version}")
 
                 install_cmd = [
-                    "uv" if self.use_uv else "pip",
+                    self.uv_path if self.use_uv else "pip",
                     "pip" if self.use_uv else "",
                     "install",
                     f"{name}=={version}",

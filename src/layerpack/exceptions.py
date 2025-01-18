@@ -26,3 +26,12 @@ class DependencyConflictError(LambdaBundlerError):
     """Raised when there are conflicting package dependencies."""
 
     pass
+
+
+class ConfigurationError(LambdaBundlerError):
+    """Raised when there's an invalid configuration setting."""
+
+    def __init__(self, message: str, config_key: str = None):
+        super().__init__(message)
+        self.message = message
+        self.config_key = config_key

@@ -4,7 +4,7 @@ import sys
 
 def setup_logger(verbose: bool = False) -> logging.Logger:
     """Configure and return logger instance."""
-    logger = logging.getLogger("lambda_bundler")
+    logger = logging.getLogger("layerpack")
 
     # Clear any existing handlers
     logger.handlers.clear()

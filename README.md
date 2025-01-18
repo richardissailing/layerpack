@@ -15,7 +15,7 @@ A Python library for simplifying AWS Lambda deployment by automatically managing
 - Handles platform-specific dependencies for AWS Lambda
 - Optimizes package size through selective inclusion
 - Supports layer creation with multiple runtimes
-- Uses Poetry for reliable dependency resolution
+- Uses UV for reliable dependency resolution
 
 ## Installation
 
@@ -36,7 +36,7 @@ poetry add pylayers
 ### Basic Usage
 
 ```python
-from lambda_bundler import LambdaPackager
+from layerpack import LambdaPackager
 
 # Initialize packager
 packager = LambdaPackager(

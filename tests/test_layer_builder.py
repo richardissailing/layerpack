@@ -2,8 +2,8 @@ import os
 
 import pytest
 
-from lambda_bundler.exceptions import LayerSizeLimitError
-from lambda_bundler.layer_builder import LayerBuilder
+from layerpack.exceptions import LayerSizeLimitError
+from layerpack.layer_builder import LayerBuilder
 
 
 def test_create_layer_structure(tmp_path):

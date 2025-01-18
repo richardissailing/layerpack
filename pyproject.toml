@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "lambda-bundler"
+name = "layerpack"
 version = "0.1.0"
 description = "A Python library for simplifying AWS Lambda deployment"
 authors = ["Your Name <your.email@example.com>"]
 readme = "README.md"
-packages = [{include = "lambda_bundler", from = "src"}]
+packages = [{include = "layerpack", from = "src"}]
 license = "MIT"
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -34,7 +34,7 @@ pytest-cov = "^6.0.0"
 ruff = "^0.9.2"
 
 [tool.poetry.scripts]
-lambda-bundler = "lambda_bundler.cli:cli"
+lambda-bundler = "layerpack.cli:cli"
 
 [tool.ruff]
 target-version = "py38"
@@ -47,7 +47,7 @@ lint.select = [
     "C4",  # flake8-comprehensions
     "UP",  # pyupgrade
 ]
-lint.ignore = ["D203", "D213"]
+lint.ignore = ["D203", "D213", "F401"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -58,4 +58,4 @@ skip-magic-trailing-comma = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-v --cov=lambda_bundler --cov-report=term-missing"
+addopts = "-v --cov=layerpack --cov-report=term-missing"
