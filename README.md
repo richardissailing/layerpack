@@ -1,8 +1,8 @@
-# pylayers
+# layerpack
 
-[![CI](https://github.com/yourusername/pylayers/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/pylayers/actions/workflows/ci.yml)
-[![PyPI version](https://badge.fury.io/py/pylayers.svg)](https://badge.fury.io/py/pylayers)
-[![Python Version](https://img.shields.io/pypi/pyversions/pylayers.svg)](https://pypi.org/project/pylayers/)
+[![CI](https://github.com/yourusername/layerpack/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/layerpack/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/layerpack.svg)](https://badge.fury.io/py/layerpack)
+[![Python Version](https://img.shields.io/pypi/pyversions/layerpack.svg)](https://pypi.org/project/layerpack/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Python library for simplifying AWS Lambda deployment by automatically managing dependencies and creating deployment packages. Uses UV for reliable dependency resolution.
@@ -19,16 +19,16 @@ A Python library for simplifying AWS Lambda deployment by automatically managing
 
 ## Installation
 
-You can install pylayers using pip:
+You can install layerpack using pip:
 
 ```bash
-pip install pylayers
+pip install layerpack
 ```
 
 Or using Poetry:
 
 ```bash
-poetry add pylayers
+poetry add layerpack
 ```
 
 ## Usage
@@ -135,8 +135,8 @@ The library provides specific exceptions for different error cases:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/pylayers.git
-cd pylayers
+git clone https://github.com/richardissailing/layerpack.git
+cd layerpack
 ```
 
 2. Install dependencies:
