@@ -2,7 +2,6 @@ import os
 import shutil
 import subprocess
 import tempfile
-from typing import Dict, List
 
 from .exceptions import DependencyConflictError, PackageNotFoundError
 from .logger import logger
@@ -57,7 +56,7 @@ class DependencyManager:
             self.uv_path = None
             return False
 
-    def resolve_dependencies(self, packages: List[str]) -> Dict[str, str]:
+    def resolve_dependencies(self, packages: list[str]) -> dict[str, str]:
         """
         Resolve dependencies using uv if available, otherwise use pip.
 
@@ -134,7 +133,7 @@ class DependencyManager:
             logger.error(f"Dependency resolution failed: {str(e)}")
             raise
 
-    def download_packages(self, package_specs: Dict[str, str]) -> str:
+    def download_packages(self, package_specs: dict[str, str]) -> str:
         """
         Download packages to a local directory.
 

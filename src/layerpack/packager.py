@@ -2,7 +2,7 @@ import os
 import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+from typing import Optional, Union
 
 from .dependency_manager import DependencyManager
 from .exceptions import (
@@ -18,11 +18,11 @@ from .logger import logger
 class LambdaPackagerConfig:
     """Configuration class for Lambda Packager."""
 
-    exclude_packages: List[str] = field(default_factory=list)
-    include_source: List[Union[str, Path]] = field(default_factory=list)
+    exclude_packages: list[str] = field(default_factory=list)
+    include_source: list[Union[str, Path]] = field(default_factory=list)
     optimization_level: int = 1
     max_size_mb: int = 250
-    compatible_runtimes: List[str] = field(default_factory=lambda: ["python3.9"])
+    compatible_runtimes: list[str] = field(default_factory=lambda: ["python3.9"])
     strip_test_files: bool = True
     include_dependencies: bool = True
 
@@ -61,7 +61,7 @@ class LambdaPackagerConfig:
 class LambdaPackager:
     """Enhanced Lambda Packager with configuration support."""
 
-    def __init__(self, runtime: str, output_dir: str, config: Optional[Dict] = None):
+    def __init__(self, runtime: str, output_dir: str, config: Optional[dict] = None):
         """Initialize the Lambda packager.
 
         Args:
@@ -97,7 +97,7 @@ class LambdaPackager:
             or package_name in self._get_direct_dependencies()
         )
 
-    def _get_direct_dependencies(self) -> List[str]:
+    def _get_direct_dependencies(self) -> list[str]:
         """Get list of direct dependencies (non-transitive)."""
         # Implementation depends on how requirements are stored
         return []
@@ -158,7 +158,7 @@ class LambdaPackager:
 
         return self.create_layer_from_packages(packages, layer_name)
 
-    def create_layer_from_packages(self, packages: List[str], layer_name: str) -> Path:
+    def create_layer_from_packages(self, packages: list[str], layer_name: str) -> Path:
         """Create a Lambda layer from a list of packages."""
         logger.info(f"Creating layer '{layer_name}' from {len(packages)} packages")
 

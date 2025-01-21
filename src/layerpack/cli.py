@@ -1,6 +1,5 @@
 import os
 import sys
-from typing import List
 
 import click
 
@@ -76,7 +75,7 @@ def validate_max_size(ctx, param, value):
     return value
 
 
-def parse_list(value: str) -> List[str]:
+def parse_list(value: str) -> list[str]:
     """Parse comma-separated string into list."""
     if not value:
         return []
